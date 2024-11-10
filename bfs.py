@@ -9,7 +9,6 @@ Classes
 from collections import deque
 from maze import Maze
 
-
 class BFS:
     """
     Class that represents the Breadth First Search algorithm.

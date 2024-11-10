@@ -15,10 +15,9 @@ Modules:
 """
 
 from pathlib import Path
-import sys
-import os
-import pygame
 from typing import Optional
+import sys
+import pygame
 from maze import Maze
 from bfs import BFS
 from alphastar import AlphaStar

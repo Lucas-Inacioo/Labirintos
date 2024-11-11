@@ -6,6 +6,7 @@ Classes
     AlphaStar
 """
 
+from collections import OrderedDict
 import heapq
 from maze import Maze
 
@@ -17,8 +18,8 @@ class AlphaStar:
     ----------
     maze : Maze
         The maze to be solved.
-    visited : set
-        A set to keep track of visited positions in the maze.
+    visited : OrderedDict
+        An ordered dictionary to keep track of visited positions in the order they were visited.
     open_set : list
         A priority queue (min-heap) to store the positions to be visited next.
     g_costs : dict
@@ -29,7 +30,7 @@ class AlphaStar:
 
     def __init__(self, maze: Maze) -> None:
         self.maze = maze
-        self.visited = set()
+        self.visited = OrderedDict()
         self.open_set = []
         self.g_costs = {}
         self.f_costs = {}
@@ -81,7 +82,8 @@ class AlphaStar:
                     current = parent[current]
                 return path[::-1]
 
-            self.visited.add(current)
+            # Mark current as visited in order
+            self.visited[current] = None
 
             for neighbor in self.maze.get_neighbors(current):
                 if neighbor in self.visited:

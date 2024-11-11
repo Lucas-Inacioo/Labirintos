@@ -6,7 +6,7 @@ Classes
     BFS
 """
 
-from collections import deque
+from collections import deque, OrderedDict
 from maze import Maze
 
 class BFS:
@@ -17,8 +17,8 @@ class BFS:
     ----------
     maze : Maze
         The maze to be solved.
-    visited : set
-        A set to keep track of visited positions in the maze.
+    visited : OrderedDict
+        An OrderedDict to keep track of visited positions in the maze.
     queue : deque
         A deque to store the positions to be visited next.
 
@@ -38,7 +38,7 @@ class BFS:
             The maze to be solved.
         """
         self.maze = maze
-        self.visited = set()
+        self.visited = OrderedDict()
         self.queue = deque()
 
     def solve(self) -> list:
@@ -53,9 +53,9 @@ class BFS:
         start = self.maze.start
         end = self.maze.end
 
-        # Initialize the queue and visited set
+        # Initialize the queue and visited OrderedDict
         self.queue.append(start)
-        self.visited.add(start)
+        self.visited[start] = None
 
         # Keep track of the parent of each position
         parent = {start: None}
@@ -77,7 +77,7 @@ class BFS:
             for neighbor in neighbors:
                 if neighbor not in self.visited:
                     self.queue.append(neighbor)
-                    self.visited.add(neighbor)
+                    self.visited[neighbor] = None
                     parent[neighbor] = current
 
         return []  # Return an empty list if no path is found

@@ -6,12 +6,11 @@ and running a simulation of the maze-solving process.
 
 Modules:
     - sys: System-specific parameters and functions.
-    - os: Provides a way to interact with the operating system.
     - pygame: Library for creating graphical interfaces.
     - maze: Contains the Maze class.
     - bfs: Contains the BFS class.
     - alphastar: Contains the AlphaStar (A*) class.
-    - constants: Contains color definitions and screen dimensions.
+    - constants: Contains color definitions and dimensions.
 """
 
 from pathlib import Path
@@ -207,6 +206,7 @@ def simulate(screen: pygame.Surface) -> None:
                     constants.COLORS[5],
                     (x * cell_size, y * cell_size, cell_size, cell_size)
                 )
+            pygame.display.flip()
 
         # Mark the solution path
         for position in solution[1:-1]:
@@ -216,14 +216,15 @@ def simulate(screen: pygame.Surface) -> None:
                 constants.COLORS[4],
                 (x * cell_size, y * cell_size, cell_size, cell_size)
             )
+            pygame.display.flip()
 
-        pygame.display.flip()
         clock.tick(60)
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
 
 
 def main_menu(screen: pygame.Surface) -> None:
@@ -286,7 +287,6 @@ def main_menu(screen: pygame.Surface) -> None:
                     select_ai(screen)
                 elif simulate_button.collidepoint(mouse_pos):
                     simulate(screen)
-
 
 if __name__ == "__main__":
     SCREEN = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))

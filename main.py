@@ -4,13 +4,21 @@ Main script to visualize the maze solver using Pygame.
 This script provides a menu interface for selecting a maze, choosing an AI algorithm,
 and running a simulation of the maze-solving process.
 
-Modules:
-    - sys: System-specific parameters and functions.
-    - pygame: Library for creating graphical interfaces.
-    - maze: Contains the Maze class.
-    - bfs: Contains the BFS class.
-    - alphastar: Contains the AlphaStar (A*) class.
-    - constants: Contains color definitions and dimensions.
+Author: Lucas Gomes Inacio
+N° USP: 12562091
+
+Functions
+---------
+draw_button(Pygame.Surface, str, int, int, int, int, bool) -> None
+    Draws a button on the Pygame screen.
+select_maze(Pygame.Surface) -> None
+    Displays a menu for selecting a maze file.
+select_ai(Pygame.Surface) -> None
+    Displays a menu for selecting an AI algorithm.
+simulate(Pygame.Surface) -> None
+    Runs the simulation of the maze-solving process using the selected algorithm.
+main_menu(Pygame.Surface) -> None
+    Displays the main menu for the maze solver application.
 """
 
 from pathlib import Path
